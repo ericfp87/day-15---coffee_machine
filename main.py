@@ -11,10 +11,10 @@ def machine():
     escolha = input("O que você gostaria? (espresso, latte, cappuccino): ")
 
     def coins():
-        q1 = quarters * float(input("Quantos quarters?: "))
-        d1 = dime * float(input("Quantos Dimes?: "))
-        n1 = nickel * float(input("Quantos Nickles?: "))
-        p1 = penny * float(input("Quantos Pennies?: "))
+        q1 = quarters * float(input("Quantos quarters? ($0,25 cada): "))
+        d1 = dime * float(input("Quantos Dimes?($0,10 cada): "))
+        n1 = nickel * float(input("Quantos Nickles?($0,05 cada): "))
+        p1 = penny * float(input("Quantos Pennies?($0,01 cada): "))
         if escolha == "espresso":
             pagamento = q1 + d1 + n1 + p1
             if pagamento >= MENU["espresso"]["cost"]:
