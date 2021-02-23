@@ -106,6 +106,8 @@ def machine():
         elif escolha == "report":
             print(resources)
             machine()
+        else:
+            machine()
 
     coffee_machine()
 
