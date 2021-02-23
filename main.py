@@ -1,15 +1,14 @@
 from coffee import MENU
 from coffee import resources
+
 quarters = 0.25
 dime = 0.10
 nickel = 0.05
 penny = 0.01
 
+
 def machine():
     escolha = input("O que você gostaria? (espresso, latte, cappuccino): ")
-
-
-
 
     def coins():
         q1 = quarters * float(input("Quantos quarters?: "))
@@ -20,7 +19,7 @@ def machine():
             pagamento = q1 + d1 + n1 + p1
             if pagamento >= MENU["espresso"]["cost"]:
                 troco = pagamento - MENU["espresso"]["cost"]
-                print(f"Aqui está ${troco} de troco")
+                print(f"Aqui está ${troco:.2f} de troco")
                 print("Aqui está o seu Espresso!")
                 machine()
             else:
@@ -32,7 +31,7 @@ def machine():
             pagamento = q1 + d1 + n1 + p1
             if pagamento >= MENU["espresso"]["cost"]:
                 troco = pagamento - MENU["espresso"]["cost"]
-                print(f"Aqui está ${troco} de troco")
+                print(f"Aqui está ${troco:.2f} de troco")
                 print("Aqui está o seu Espresso!")
                 machine()
             else:
@@ -40,12 +39,11 @@ def machine():
                 pagamento == 0
                 machine()
 
-
         elif escolha == "cappuccino":
             pagamento = q1 + d1 + n1 + p1
             if pagamento >= MENU["espresso"]["cost"]:
                 troco = pagamento - MENU["espresso"]["cost"]
-                print(f"Aqui está ${troco} de troco")
+                print(f"Aqui está ${troco:.2f} de troco")
                 print("Aqui está o seu Espresso!")
                 print(pagamento)
                 machine()
@@ -53,10 +51,6 @@ def machine():
                 print("desculpe, dinheiro insuficiente. Devolvendo dinheiro.")
                 pagamento == 0
                 machine()
-
-        elif escolha == "report":
-            print(resources)
-
 
     def coffee_machine():
 
@@ -68,9 +62,11 @@ def machine():
                     print("por favor, insira as moedas.\n")
                     coins()
                 else:
-                    print("Desculpe, não há água suficiente.")
+                    print("Desculpe, não há café suficiente.")
+                    machine()
             else:
                 print("Desculpe, não há água suficiente.")
+                machine()
         elif escolha == "latte":
             if resources["water"] - MENU["latte"]["ingredients"]["water"] >= 0:
                 if resources["coffee"] - MENU["latte"]["ingredients"]["coffee"] >= 0:
@@ -80,6 +76,15 @@ def machine():
                         resources["milk"] = resources["milk"] - MENU["latte"]["ingredients"]["milk"]
                         print("por favor, insira as moedas.\n")
                         coins()
+                    else:
+                        print("Desculpe, não há leite suficiente.")
+                        machine()
+                else:
+                    print("Desculpe, não há café suficiente.")
+                    machine()
+            else:
+                print("Desculpe, não há água suficiente.")
+                machine()
         elif escolha == "cappuccino":
             if resources["water"] - MENU["cappuccino"]["ingredients"]["water"] >= 0:
                 if resources["coffee"] - MENU["cappuccino"]["ingredients"]["coffee"] >= 0:
@@ -89,6 +94,20 @@ def machine():
                         resources["milk"] = resources["milk"] - MENU["cappuccino"]["ingredients"]["milk"]
                         print("por favor, insira as moedas.\n")
                         coins()
+                    else:
+                        print("Desculpe, não há leite suficiente.")
+                        machine()
+                else:
+                    print("Desculpe, não há café suficiente.")
+                    machine()
+            else:
+                print("Desculpe, não há água suficiente.")
+                machine()
+        elif escolha == "report":
+            print(resources)
+            machine()
 
     coffee_machine()
+
+
 machine()
