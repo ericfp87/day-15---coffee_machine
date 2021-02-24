@@ -18,6 +18,8 @@ def machine():
         if escolha == "espresso":
             pagamento = q1 + d1 + n1 + p1
             if pagamento >= MENU["espresso"]["cost"]:
+                resources["water"] = resources["water"] - MENU["espresso"]["ingredients"]["water"]
+                resources["coffee"] = resources["coffee"] - MENU["espresso"]["ingredients"]["coffee"]
                 troco = pagamento - MENU["espresso"]["cost"]
                 print(f"Aqui está ${troco:.2f} de troco")
                 print("Aqui está o seu Espresso!")
@@ -29,10 +31,13 @@ def machine():
 
         elif escolha == "latte":
             pagamento = q1 + d1 + n1 + p1
-            if pagamento >= MENU["espresso"]["cost"]:
-                troco = pagamento - MENU["espresso"]["cost"]
+            if pagamento >= MENU["latte"]["cost"]:
+                resources["water"] = resources["water"] - MENU["latte"]["ingredients"]["water"]
+                resources["coffee"] = resources["coffee"] - MENU["latte"]["ingredients"]["coffee"]
+                resources["milk"] = resources["milk"] - MENU["latte"]["ingredients"]["milk"]
+                troco = pagamento - MENU["latte"]["cost"]
                 print(f"Aqui está ${troco:.2f} de troco")
-                print("Aqui está o seu Espresso!")
+                print("Aqui está o seu latte!")
                 machine()
             else:
                 print("desculpe, dinheiro insuficiente. Devolvendo dinheiro.")
@@ -41,11 +46,13 @@ def machine():
 
         elif escolha == "cappuccino":
             pagamento = q1 + d1 + n1 + p1
-            if pagamento >= MENU["espresso"]["cost"]:
-                troco = pagamento - MENU["espresso"]["cost"]
+            if pagamento >= MENU["cappuccino"]["cost"]:
+                resources["water"] = resources["water"] - MENU["cappuccino"]["ingredients"]["water"]
+                resources["coffee"] = resources["coffee"] - MENU["cappuccino"]["ingredients"]["coffee"]
+                resources["milk"] = resources["milk"] - MENU["cappuccino"]["ingredients"]["milk"]
+                troco = pagamento - MENU["cappuccino"]["cost"]
                 print(f"Aqui está ${troco:.2f} de troco")
-                print("Aqui está o seu Espresso!")
-                print(pagamento)
+                print("Aqui está o seu cappuccino!")
                 machine()
             else:
                 print("desculpe, dinheiro insuficiente. Devolvendo dinheiro.")
@@ -57,8 +64,6 @@ def machine():
         if escolha == "espresso":
             if resources["water"] - MENU["espresso"]["ingredients"]["water"] >= 0:
                 if resources["coffee"] - MENU["espresso"]["ingredients"]["coffee"] >= 0:
-                    resources["water"] = resources["water"] - MENU["espresso"]["ingredients"]["water"]
-                    resources["coffee"] = resources["coffee"] - MENU["espresso"]["ingredients"]["coffee"]
                     print("por favor, insira as moedas.\n")
                     coins()
                 else:
@@ -71,9 +76,6 @@ def machine():
             if resources["water"] - MENU["latte"]["ingredients"]["water"] >= 0:
                 if resources["coffee"] - MENU["latte"]["ingredients"]["coffee"] >= 0:
                     if resources["milk"] - MENU["latte"]["ingredients"]["milk"] >= 0:
-                        resources["water"] = resources["water"] - MENU["latte"]["ingredients"]["water"]
-                        resources["coffee"] = resources["coffee"] - MENU["latte"]["ingredients"]["coffee"]
-                        resources["milk"] = resources["milk"] - MENU["latte"]["ingredients"]["milk"]
                         print("por favor, insira as moedas.\n")
                         coins()
                     else:
@@ -89,9 +91,6 @@ def machine():
             if resources["water"] - MENU["cappuccino"]["ingredients"]["water"] >= 0:
                 if resources["coffee"] - MENU["cappuccino"]["ingredients"]["coffee"] >= 0:
                     if resources["milk"] - MENU["cappuccino"]["ingredients"]["milk"] >= 0:
-                        resources["water"] = resources["water"] - MENU["cappuccino"]["ingredients"]["water"]
-                        resources["coffee"] = resources["coffee"] - MENU["cappuccino"]["ingredients"]["coffee"]
-                        resources["milk"] = resources["milk"] - MENU["cappuccino"]["ingredients"]["milk"]
                         print("por favor, insira as moedas.\n")
                         coins()
                     else:
